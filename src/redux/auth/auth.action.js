@@ -1,4 +1,5 @@
 import axios from 'axios';
+import store from 'store';
 
 import authTypes from "./auth.types";
 
@@ -23,7 +24,7 @@ export const loginUser = user => {
         token: data.token,
         userId: data.user._id
       }
-      localStorage.setItem("user", JSON.stringify(dataToSave));
+      store.set('user', dataToSave)
       dispatch(handleLoginUser())
     } catch (error) { console.log(error) }
   }
@@ -42,7 +43,7 @@ const handleLogout = () => {
 export const logout = () => {
   return async function (dispatch) {
     try {
-      const user = JSON.parse(localStorage.getItem("user"));
+      const user = store.get('user')
       const options = {
         method: 'POST',
         headers: {
@@ -51,7 +52,7 @@ export const logout = () => {
         url: `${API}/logout`
       }
       await axios(options);
-      localStorage.removeItem("user");
+      store.remove("user");
       dispatch(handleLogout())
     } catch (error) {
       console.log(error)

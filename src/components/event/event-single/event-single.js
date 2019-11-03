@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchEvent, checkIfAttending } from '../../../redux/event/event.action';
 import moment from "moment";
+import store from 'store';
 
 import "./event-single.scss";
 import AttendingForm from '../attending-form/AttendingForm';
@@ -15,7 +16,7 @@ class EventSingle extends React.Component {
   }
   componentDidMount() {
     this.setState({
-      user: JSON.parse(localStorage.getItem("user"))
+      user: store.get('user')
     });
     this.props.onFetchEvent(this.props.match.params.id);
     console.log(this.state);
