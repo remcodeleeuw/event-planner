@@ -4,6 +4,8 @@ import { createStructuredSelector } from "reselect";
 import "./event-form.css";
 import { createEvent } from '../../../redux/event/event.action';
 import { selectUser } from '../../../redux/auth/auth.selector';
+import store from 'store';
+
 class EventForm extends React.Component {
   constructor() {
     super();
@@ -26,7 +28,7 @@ class EventForm extends React.Component {
 
   onHandleSubmit = async event => {
     event.preventDefault();
-    const user = JSON.parse(localStorage.getItem('user'))
+    const user = store.get('user')
     await this.setState({
       user: user.userId
     });

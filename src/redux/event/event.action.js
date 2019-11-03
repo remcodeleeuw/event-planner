@@ -1,4 +1,5 @@
 import axios from 'axios';
+import store from 'store';
 
 import eventTypes from './event.types';
 
@@ -73,7 +74,6 @@ export const checkIfAttending = (userId, eventId) => {
       await dispatch(handleCheckIfAttending(data));
       dispatch(handleLoading())
     } catch (error) {
-      console.log("hee")
       console.log(error)
     }
   }
@@ -94,7 +94,7 @@ const handleLoading = () => {
 
 export const setAttending = (eventId, attending) => {
   return async function (dispatch) {
-    const user = JSON.parse(localStorage.getItem('user'));
+    const user = store.get('user')
     await axios.put(`${API}/${eventId}/attending`, {
       attendee: {
         user: user.userId,

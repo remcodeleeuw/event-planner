@@ -7,7 +7,6 @@ import "./event-item.scss";
 function EventItem(props) {
   const { event, handleDelete } = props
   const { date, description, title, _id } = event;
-  console.log(event)
   return (
     <div className="event-item" >
       <Link to={`/events/single/${_id}`}>
