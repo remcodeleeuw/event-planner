@@ -15,7 +15,6 @@ class EventForm extends React.Component {
   };
 
   sendWhatsAppMessage = () => {
-    // window.open(`https://web.whatsapp.com/send?text=${encodeMessage(this.state.message)}`)
   };
 
   onHandleChange = event => {
