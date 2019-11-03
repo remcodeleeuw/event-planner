@@ -1,13 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 import { fetchEvent, checkIfAttending } from '../../../redux/event/event.action';
-import { selectSingleEvent, selectAttending, } from '../../../redux/event/event.selector';
 import moment from "moment";
 
 import "./event-single.scss";
 import AttendingForm from '../attending-form/AttendingForm';
-import AttendeesList from '../attendees-list/AttendeesList';
+import Attendee from '../attendee/Attendee';
 class EventSingle extends React.Component {
   constructor() {
     super();
@@ -39,7 +37,13 @@ class EventSingle extends React.Component {
               </div>
               <div className="attendee-list">
                 <h3>De volgende mensen gaan naar dit evenement</h3>
-                <AttendeesList attendees={event.attendees} />
+                {
+                  event.attendees ? (
+                    event.attendees.map(attendee => {
+                      return <Attendee attendee={attendee} />
+                    })
+                  ) : null
+                }
               </div>
             </div>
             <AttendingForm />

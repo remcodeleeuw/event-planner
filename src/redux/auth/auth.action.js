@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import authTypes from "./auth.types";
-const API = "http://localhost:5000/api/user"
+const API = "https://event-planner-api.herokuapp.com/api/user"
 
 
 export const createUser = userToCreate => {
