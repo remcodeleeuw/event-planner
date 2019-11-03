@@ -1,10 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import moment from "moment";
+import { encodeMessage } from "../../../util/message"
 
 import "./event-item.scss";
-function EventItem({ event, handleDelete }) {
+function EventItem(props) {
+  const { event, handleDelete } = props
   const { date, description, title, _id } = event;
+  console.log(event)
   return (
     <div className="event-item" >
       <Link to={`/events/single/${_id}`}>
@@ -22,9 +25,17 @@ function EventItem({ event, handleDelete }) {
       </Link>
       <div className="event-item-buttons">
         <i className="far fa-trash-alt" onClick={() => handleDelete(_id)}></i>
-        <i className="fab fa-whatsapp"></i>
+        <i className="fab fa-whatsapp" onClick={() => shareViaWhatsapp(props)}></i>
       </div>
     </div>
   )
 };
-export default EventItem;
+
+function shareViaWhatsapp(props) {
+  const message = `${props.event.user.name} nodigt je uit om naar ${props.event.title} te gaan 
+Het vind plaats op ${moment(props.event.date).format("D MMMM")}
+http://localhost:3000/events/single/${props.event._id}`
+  console.log(message)
+  window.open(`https://web.whatsapp.com/send?text=${encodeMessage(message)}`)
+}
+export default withRouter(EventItem);

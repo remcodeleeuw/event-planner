@@ -2,7 +2,9 @@ import axios from 'axios';
 
 import eventTypes from './event.types';
 
-const API = "https://event-planner-api.herokuapp.com/api/event"
+const API = process.env.NODE_ENV === 'prod'
+  ? "https://event-planner-api.herokuapp.com/api/event"
+  : "http://localhost:5000/api/event"
 export const handleFetchEvent = events => {
   return {
     type: eventTypes.FETCH_EVENTS,
