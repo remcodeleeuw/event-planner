@@ -1,7 +1,7 @@
 import axios from 'axios';
 import store from 'store';
 
-import { API_EVENT } from '../../constants/api-endpoints';
+import { API_EVENT } from '../../constant/api-endpoints';
 import eventTypes from './event.types';
 
 

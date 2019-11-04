@@ -5,7 +5,6 @@
 
   "dependencies": {
     "axios": "^0.19.0",
-    "firebase": "^7.2.1",
     "logzio-nodejs": "^1.0.7",
     "moment": "^2.24.0",
     "node-sass": "^4.12.0",
@@ -21,7 +20,6 @@
     "store": "^2.0.12",
     "thunk": "0.0.1",
     "uuid": "^3.3.3",
-    "winston-logzio": "^5.0.3"
   },
   "scripts": {
     "start": "react-scripts start",
