@@ -1,11 +1,11 @@
 import axios from 'axios';
 import store from 'store';
-
+import logger from "../../util/log";
 import authTypes from "./auth.types";
 
 const API_USER = process.env.NODE_ENV !== 'production'
-  ? "http://localhost:5000/api/event"
-  :"https://event-planner-api.herokuapp.com/api/user"
+  ? "http://localhost:5000/api/user"
+  : "https://event-planner-api.herokuapp.com/api/user"
 
 
 export const createUser = userToCreate => {
@@ -27,9 +27,19 @@ export const loginUser = user => {
         userId: data.user._id
       }
       store.set('user', dataToSave);
-      console.log(dataToSave)
+      logger.log({
+        message: "User logged in",
+        level: 'info',
+        userId: data.user._id
+      })
       dispatch(handleLoginUser())
-    } catch (error) { console.log(error) }
+    } catch (error) {
+      logger.log({
+        level: 'error',
+        message: "User error while login",
+        error
+      })
+    }
   }
 };
 

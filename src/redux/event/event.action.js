@@ -1,5 +1,6 @@
 import axios from 'axios';
 import store from 'store';
+import logger from "../../util/log";
 
 import eventTypes from './event.types';
 
@@ -27,6 +28,10 @@ export const fetchEvents = userId => {
     try {
       const { data } = await axios.get(`${API_EVENT}/user/${userId}`);
       dispatch(handleFetchEvent(data))
+      logger.log({
+        level: 'info',
+        message: "Fetched events"
+      })
     } catch (error) {
       console.log(error)
     }
