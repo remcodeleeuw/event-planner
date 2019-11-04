@@ -1,9 +1,12 @@
 import axios from 'axios';
 import store from 'store';
 
-const API_USER = process.env.NODE_ENV !== 'production' 
+/**
+ * !== 'production' 
 ? "http://localhost:5000/api/user" 
-: "https://event-planner-api.herokuapp.com/api/user"
+: 
+ */
+const API_USER ="https://event-planner-api.herokuapp.com/api/user"
 
 import authTypes from "./auth.types";
 
