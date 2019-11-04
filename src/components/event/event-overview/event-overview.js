@@ -8,6 +8,8 @@ import { selectUser } from '../../../redux/auth/auth.selector';
 import CustomLink from '../../header/custom-link/custom-link';
 import store from 'store';
 
+import logger from '../../../util/log'
+
 import "./event-overview.scss";
 class EventOverview extends React.Component {
   constructor() {
@@ -22,9 +24,12 @@ class EventOverview extends React.Component {
     });
   }
   async componentDidMount() {
-
     const { user } = this.state;
-
+    logger.log({
+      level: 'info',
+      message: 'User fetched from local storage',
+      user
+    })
     if (user) {
       this.props.onFetchEvent(user.userId);
     };
