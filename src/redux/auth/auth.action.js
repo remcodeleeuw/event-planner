@@ -24,7 +24,8 @@ export const loginUser = user => {
         token: data.token,
         userId: data.user._id
       }
-      store.set('user', dataToSave)
+      store.set('user', dataToSave);
+      console.log(dataToSave)
       dispatch(handleLoginUser())
     } catch (error) { console.log(error) }
   }
