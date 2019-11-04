@@ -1,14 +1,12 @@
 import axios from 'axios';
 import store from 'store';
 
-/**
- * process.env.NODE_ENV !== 'production'
-  ? "http://localhost:5000/api/event"
-  :
- */
-const API_EVENT =  "https://event-planner-api.herokuapp.com/api/event";
 import eventTypes from './event.types';
 
+
+const API_EVENT = process.env.NODE_ENV !== 'production'
+  ? "http://localhost:5000/api/event"
+  : "https://event-planner-api.herokuapp.com/api/event";
 
 export const handleFetchEvent = events => {
   return {
