@@ -3,7 +3,7 @@ import store from 'store';
 
 import authTypes from "./auth.types";
 
-const API = process.env.NODE_ENV === 'prod' ? "https://event-planner-api.herokuapp.com/api/user" : "http://localhost:5000/api/user"
+const API = process.env.NODE_ENV !== 'prod' ? "http://localhost:5000/api/user" : "https://event-planner-api.herokuapp.com/api/user"
 
 
 export const createUser = userToCreate => {

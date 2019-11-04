@@ -3,9 +3,9 @@ import store from 'store';
 
 import eventTypes from './event.types';
 
-const API = process.env.NODE_ENV === 'prod'
-  ? "https://event-planner-api.herokuapp.com/api/event"
-  : "http://localhost:5000/api/event"
+const API = process.env.NODE_ENV !== 'prod'
+  ? "http://localhost:5000/api/event"
+  : "https://event-planner-api.herokuapp.com/api/event"
 export const handleFetchEvent = events => {
   return {
     type: eventTypes.FETCH_EVENTS,
