@@ -25,11 +25,6 @@ class EventOverview extends React.Component {
   }
   async componentDidMount() {
     const { user } = this.state;
-    logger.log({
-      level: 'info',
-      message: 'User fetched from local storage',
-      user
-    })
     if (user) {
       this.props.onFetchEvent(user.userId);
     };
