@@ -16,10 +16,13 @@ class EventOverview extends React.Component {
       user: null
     }
   }
-  async componentDidMount() {
+  async componentWillMount() {
     await this.setState({
       user: store.get('user')
     });
+  }
+  async componentDidMount() {
+
     const { user } = this.state;
 
     if (user) {
