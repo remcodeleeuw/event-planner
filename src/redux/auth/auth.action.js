@@ -1,15 +1,15 @@
 import axios from 'axios';
 import store from 'store';
 
+import {API_USER} from '../../constants/api-endpoints'
 import authTypes from "./auth.types";
 
-const API = process.env.NODE_ENV !== 'production' ? "http://localhost:5000/api/user" : "https://event-planner-api.herokuapp.com/api/user"
 
 
 export const createUser = userToCreate => {
   return async function () {
     try {
-      await axios.post(`${API}`, { user: userToCreate })
+      await axios.post(`${API_USER}`, { user: userToCreate })
     } catch (error) {
       console.log(error)
     }
@@ -18,9 +18,8 @@ export const createUser = userToCreate => {
 
 export const loginUser = user => {
   return async function (dispatch) {
-    console.log(process.env.NODE_ENV)
     try {
-      const { data } = await axios.post(`${API}/login`, user);
+      const { data } = await axios.post(`${API_USER}/login`, user);
       const dataToSave = {
         token: data.token,
         userId: data.user._id

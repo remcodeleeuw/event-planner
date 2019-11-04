@@ -1,11 +1,10 @@
 import axios from 'axios';
 import store from 'store';
 
+import { API_EVENT } from '../../constants/api-endpoints';
 import eventTypes from './event.types';
 
-const API = process.env.NODE_ENV !== 'production'
-  ? "http://localhost:5000/api/event"
-  : "https://event-planner-api.herokuapp.com/api/event"
+
 export const handleFetchEvent = events => {
   return {
     type: eventTypes.FETCH_EVENTS,
@@ -23,7 +22,7 @@ const handleFetchEventById = event => {
 export const fetchEvents = userId => {
   return async function (dispatch) {
     try {
-      const { data } = await axios.get(`${API}/user/${userId}`);
+      const { data } = await axios.get(`${API_EVENT}/user/${userId}`);
       dispatch(handleFetchEvent(data))
     } catch (error) {
       console.log(error)
@@ -34,7 +33,7 @@ export const fetchEvents = userId => {
 export const fetchEvent = id => {
   return async function (dispatch) {
     try {
-      const { data } = await axios.get(`${API}/${id}`);
+      const { data } = await axios.get(`${API_EVENT}/${id}`);
       await dispatch(handleFetchEventById(data))
     } catch (error) {
       console.log(error);
@@ -45,7 +44,7 @@ export const fetchEvent = id => {
 export const createEvent = (event) => {
   return async function (dispatch) {
     try {
-      await axios.post(API, {
+      await axios.post(API_EVENT, {
         event
       });
       dispatch(fetchEvents());
@@ -58,7 +57,7 @@ export const createEvent = (event) => {
 export const deleteEvent = id => {
   return async function (dispatch) {
     try {
-      await axios.delete(`${API}/${id}`);
+      await axios.delete(`${API_EVENT}/${id}`);
       dispatch(fetchEvents());
     } catch (error) {
       console.log(error);
@@ -70,7 +69,7 @@ export const checkIfAttending = (userId, eventId) => {
   return async function (dispatch) {
     dispatch(handleLoading())
     try {
-      const { data } = await axios.get(`${API}/${eventId}/attending/${userId}`);
+      const { data } = await axios.get(`${API_EVENT}/${eventId}/attending/${userId}`);
       await dispatch(handleCheckIfAttending(data));
       dispatch(handleLoading())
     } catch (error) {
@@ -95,7 +94,7 @@ const handleLoading = () => {
 export const setAttending = (eventId, attending) => {
   return async function (dispatch) {
     const user = store.get('user')
-    await axios.put(`${API}/${eventId}/attending`, {
+    await axios.put(`${API_EVENT}/${eventId}/attending`, {
       attendee: {
         user: user.userId,
         attending
