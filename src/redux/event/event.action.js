@@ -1,7 +1,9 @@
 import axios from 'axios';
 import store from 'store';
 
-import { API_EVENT } from '../../constant/api-endpoints';
+const API_EVENT = process.env.NODE_ENV !== 'production'
+  ? "http://localhost:5000/api/event"
+  : "https://event-planner-api.herokuapp.com/api/event";
 import eventTypes from './event.types';
 
 
