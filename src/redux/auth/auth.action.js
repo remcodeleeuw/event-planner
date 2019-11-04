@@ -50,7 +50,7 @@ export const logout = () => {
         headers: {
           'Authorization': `Bearer ${user.token}`
         },
-        url: `${API}/logout`
+        url: `${API_USER}/logout`
       }
       await axios(options);
       store.remove("user");
