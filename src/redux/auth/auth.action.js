@@ -18,6 +18,7 @@ export const createUser = userToCreate => {
 
 export const loginUser = user => {
   return async function (dispatch) {
+    console.log(process.env.NODE_ENV)
     try {
       const { data } = await axios.post(`${API}/login`, user);
       const dataToSave = {
