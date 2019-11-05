@@ -24,7 +24,7 @@ class SignUp extends React.Component {
       await this.props.onCreateUser(this.state);
       return;
     } catch (error) {
-
+      
     }
     this.props.history.push("/login")
 

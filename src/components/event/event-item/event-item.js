@@ -23,18 +23,23 @@ function EventItem(props) {
         </div>
       </Link>
       <div className="event-item-buttons">
-        <i className="far fa-trash-alt" onClick={() => handleDelete(_id)}></i>
         <i className="fab fa-whatsapp" onClick={() => shareViaWhatsapp(props)}></i>
+        <i className="far fa-trash-alt" onClick={() => handleDelete(_id)}></i>
       </div>
     </div>
   )
 };
 
 function shareViaWhatsapp(props) {
+  const isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
   const message = `${props.event.user.name} nodigt je uit om naar ${props.event.title} te gaan 
-Het vind plaats op ${moment(props.event.date).format("D MMMM")}
-http://localhost:3000/events/single/${props.event._id}`
-  console.log(message)
-  window.open(`https://web.whatsapp.com/send?text=${encodeMessage(message)}`)
+  Het vind plaats op ${moment(props.event.date).format("D MMMM")}
+  http://localhost:3000/events/single/${props.event._id}`
+  if (isMobile) {
+    window.open(`https://wa.me/?text=${encodeMessage(message)}`)
+  } else {
+    window.open(`https://web.whatsapp.com/send?text=${encodeMessage(message)}`)
+
+  }
 }
 export default withRouter(EventItem);

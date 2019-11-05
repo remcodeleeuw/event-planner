@@ -19,6 +19,7 @@
     "store": "^2.0.12",
     "thunk": "0.0.1",
     "uuid": "^3.3.3",
+    "winston-loggly-bulk": "^3.0.1",
     "winston-logzio": "^5.0.3"
   },
   "scripts": {
