@@ -1,11 +1,12 @@
 import React from 'react';
+import "./Attendee.scss";
 
 function AttendeesList(props) {
   const { attendee: { user } } = props;
   return (
-    <div>
+    <span className="attendee">
       {user.name}
-    </div >
+    </span>
   )
 };
 
