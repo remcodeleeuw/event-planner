@@ -27,7 +27,7 @@ export const fetchEvents = userId => {
   return async function (dispatch) {
     try {
       const { data } = await axios.get(`${API_EVENT}/user/${userId}`);
-      dispatch(handleFetchEvent(data))
+      await dispatch(handleFetchEvent(data))
       logger.log({
         level: 'info',
         message: "Fetched events"
@@ -65,8 +65,9 @@ export const createEvent = (event) => {
 export const deleteEvent = id => {
   return async function (dispatch) {
     try {
+      const user = await store.get('user');
       await axios.delete(`${API_EVENT}/${id}`);
-      dispatch(fetchEvents());
+      dispatch(fetchEvents(user.userId));
     } catch (error) {
       console.log(error);
     }

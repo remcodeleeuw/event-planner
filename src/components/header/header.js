@@ -6,6 +6,7 @@ import { logout } from '../../redux/auth/auth.action';
 import { selectLoggedinStatus } from '../../redux/auth/auth.selector';
 import store from 'store';
 
+import "./header.scss"
 class Header extends React.Component {
   render() {
     const { loggedin } = this.props;
@@ -19,15 +20,19 @@ class Header extends React.Component {
 
         </ul>
         <ul className="menu-list menu-right">
-          <li className="menu-item">
-            {
-              loggedin ? (
-                <Link className="menu-link" to="/" onClick={() => this.props.onLogout()}>Logout</Link>
-              ) : (
+          {
+            loggedin ? (
+              <>
+                <li className="menu-item">
+                  <Link className="menu-link" to="/" onClick={() => this.props.onLogout()}>Logout</Link>
+                </li>
+              </>
+            ) : (
+                <li className="menu-item">
                   <Link className="menu-link" to="/login">Login</Link>
-                )
-            }
-          </li>
+                </li>
+              )
+          }
         </ul>
       </header>
     )

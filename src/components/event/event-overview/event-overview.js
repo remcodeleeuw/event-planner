@@ -42,13 +42,16 @@ class EventOverview extends React.Component {
     return (
       <div className="event-overview">
         <h2 className="event-overview-title">Je aankomende evenementen</h2>
-        {
-          this.props ? (
-            this.props.events.map(event => {
-              return <EventItem key={event._id} handleDelete={this.handleDelete} event={event} />
-            })
-          ) : <span></span>
-        }
+        <div className="event-overview-list">
+          {
+            this.props ? (
+              this.props.events.map(event => {
+                return <EventItem key={event._id} handleDelete={this.handleDelete} event={event} />
+              })
+            ) : <span></span>
+          }
+        </div>
+
         {
           user ? <CustomLink {...customLinkDetails} /> : null
         }
