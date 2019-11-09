@@ -1,10 +1,13 @@
 .event-item {
   background: #fff;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 3px 3px rgba(0,0,0,0.23);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 3px 3px rgba(0,0,0,0.23);
   padding: 18px;
   margin: auto;
   margin-bottom: 36px;
-  width: 50%;
+  &:hover {
+    background: #e91e63;
+    color: #fff;
+  }
   &-title {
     align-items: center;
     display: flex;
@@ -19,11 +22,16 @@
     text-align: left;
   }
   &-buttons {
+    display: flex;
+    justify-content: space-between;
     margin-top: 18px;
     & i {
       margin-right: 12px;
     }
   }
+}
+.fab, .far {
+  font-size: 18px;
 }
 a {
   color: inherit;

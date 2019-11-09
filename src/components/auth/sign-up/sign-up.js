@@ -9,6 +9,8 @@ class SignUp extends React.Component {
       name: "",
       email: "",
       password: "",
+      error: null
+
     }
   }
   onHandleChange = event => {
@@ -21,15 +23,24 @@ class SignUp extends React.Component {
   onHandleSubmit = async event => {
     event.preventDefault();
     try {
+      await this.validateState();
       await this.props.onCreateUser(this.state);
-      return;
+      this.props.history.push("/login")
     } catch (error) {
-
+      console.log(this.state)
     }
-    this.props.history.push("/login")
 
   }
-
+  validateState = async () => {
+    for (const key in this.state) {
+      if (this.state[key] === "") {
+        await this.setState({
+          error: `${key} kan niet leeg zijn`
+        });
+        throw new Error();
+      }
+    }
+  }
   render() {
     return (
       <form onSubmit={this.onHandleSubmit} className="form event-form">
@@ -38,6 +49,9 @@ class SignUp extends React.Component {
         <input name="name" onChange={this.onHandleChange} className="form-input" type="text" placeholder="Vul hier je naam in" />
         <input name="email" onChange={this.onHandleChange} className="form-input" type="email" placeholder="email" />
         <input name="password" onChange={this.onHandleChange} className="form-input" type="password" placeholder="wachtwoord" />
+        {
+          this.state.error ? <span>{this.state.error}</span> : ""
+        }
         <button className="form-button">Maak account</button>
       </form>
     )

@@ -38,7 +38,9 @@ export const loginUser = user => {
         level: 'error',
         message: "User error while login",
         error
-      })
+      });
+      dispatch({ type: authTypes.ERROR, payload: error })
+      throw new Error();
     }
   }
 };

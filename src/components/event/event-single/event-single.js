@@ -14,12 +14,12 @@ class EventSingle extends React.Component {
       user: null
     }
   }
-  componentDidMount() {
-    this.setState({
+  async componentDidMount() {
+    await this.setState({
       user: store.get('user')
     });
+    console.log(this.state.user)
     this.props.onFetchEvent(this.props.match.params.id);
-    console.log(this.state);
   }
   render() {
     const { user } = this.state;

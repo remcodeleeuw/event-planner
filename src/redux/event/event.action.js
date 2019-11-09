@@ -101,7 +101,7 @@ const handleLoading = () => {
 
 export const setAttending = (eventId, attending) => {
   return async function (dispatch) {
-    const user = store.get('user')
+    const user = await store.get('user');
     await axios.put(`${API_EVENT}/${eventId}/attending`, {
       attendee: {
         user: user.userId,

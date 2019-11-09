@@ -11,3 +11,8 @@ export const selectLoggedinStatus = createSelector(
   [selectauth],
   auth => auth.loggedIn
 )
+
+export const selectError = createSelector(
+  [selectauth],
+  auth => auth.error
+)
