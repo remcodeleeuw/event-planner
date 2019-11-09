@@ -33,8 +33,8 @@ function EventItem(props) {
 function shareViaWhatsapp(props) {
   const isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
   const message = `${props.event.user.name} nodigt je uit om naar ${props.event.title} te gaan 
-  Het vind plaats op ${moment(props.event.date).format("D MMMM")}
-  http://localhost:3000/events/single/${props.event._id}`
+Het vind plaats op ${moment(props.event.date).format("D MMMM")}
+https://event-planner-right-bit.now.sh/events/single/${props.event._id}`
   if (isMobile) {
     window.open(`https://wa.me/?text=${encodeMessage(message)}`)
   } else {
